@@ -1,0 +1,43 @@
+C:\Users\nguye\Desktop\GoogleDriver\GoogleDriver\bin\Debug\GoogleDriver.exe.config
+C:\Users\nguye\Desktop\GoogleDriver\GoogleDriver\bin\Debug\GoogleDriver.exe
+C:\Users\nguye\Desktop\GoogleDriver\GoogleDriver\bin\Debug\GoogleDriver.pdb
+C:\Users\nguye\Desktop\GoogleDriver\GoogleDriver\bin\Debug\Google.Apis.Auth.dll
+C:\Users\nguye\Desktop\GoogleDriver\GoogleDriver\bin\Debug\Google.Apis.Auth.PlatformServices.dll
+C:\Users\nguye\Desktop\GoogleDriver\GoogleDriver\bin\Debug\Google.Apis.Core.dll
+C:\Users\nguye\Desktop\GoogleDriver\GoogleDriver\bin\Debug\Google.Apis.dll
+C:\Users\nguye\Desktop\GoogleDriver\GoogleDriver\bin\Debug\Google.Apis.Drive.v3.dll
+C:\Users\nguye\Desktop\GoogleDriver\GoogleDriver\bin\Debug\Google.Apis.PlatformServices.dll
+C:\Users\nguye\Desktop\GoogleDriver\GoogleDriver\bin\Debug\Newtonsoft.Json.dll
+C:\Users\nguye\Desktop\GoogleDriver\GoogleDriver\bin\Debug\Google.Apis.xml
+C:\Users\nguye\Desktop\GoogleDriver\GoogleDriver\bin\Debug\Google.Apis.Auth.xml
+C:\Users\nguye\Desktop\GoogleDriver\GoogleDriver\bin\Debug\Google.Apis.Core.xml
+C:\Users\nguye\Desktop\GoogleDriver\GoogleDriver\bin\Debug\Google.Apis.Drive.v3.xml
+C:\Users\nguye\Desktop\GoogleDriver\GoogleDriver\bin\Debug\Newtonsoft.Json.xml
+C:\Users\nguye\Desktop\GoogleDriver\GoogleDriver\obj\Debug\GoogleDriver.csprojResolveAssemblyReference.cache
+C:\Users\nguye\Desktop\GoogleDriver\GoogleDriver\obj\Debug\GoogleDriver.Form1.resources
+C:\Users\nguye\Desktop\GoogleDriver\GoogleDriver\obj\Debug\GoogleDriver.Properties.Resources.resources
+C:\Users\nguye\Desktop\GoogleDriver\GoogleDriver\obj\Debug\GoogleDriver.csproj.GenerateResource.Cache
+C:\Users\nguye\Desktop\GoogleDriver\GoogleDriver\obj\Debug\GoogleDriver.exe
+C:\Users\nguye\Desktop\GoogleDriver\GoogleDriver\obj\Debug\GoogleDriver.pdb
+D:\1.NAM JOKER\Bai tap\Cloud\GoogleDriver\GoogleDriver\GoogleDriver\bin\Debug\GoogleDriver.exe.config
+D:\1.NAM JOKER\Bai tap\Cloud\GoogleDriver\GoogleDriver\GoogleDriver\bin\Debug\GoogleDriver.exe
+D:\1.NAM JOKER\Bai tap\Cloud\GoogleDriver\GoogleDriver\GoogleDriver\bin\Debug\GoogleDriver.pdb
+D:\1.NAM JOKER\Bai tap\Cloud\GoogleDriver\GoogleDriver\GoogleDriver\bin\Debug\Google.Apis.Auth.dll
+D:\1.NAM JOKER\Bai tap\Cloud\GoogleDriver\GoogleDriver\GoogleDriver\bin\Debug\Google.Apis.Auth.PlatformServices.dll
+D:\1.NAM JOKER\Bai tap\Cloud\GoogleDriver\GoogleDriver\GoogleDriver\bin\Debug\Google.Apis.Core.dll
+D:\1.NAM JOKER\Bai tap\Cloud\GoogleDriver\GoogleDriver\GoogleDriver\bin\Debug\Google.Apis.dll
+D:\1.NAM JOKER\Bai tap\Cloud\GoogleDriver\GoogleDriver\GoogleDriver\bin\Debug\Google.Apis.Drive.v3.dll
+D:\1.NAM JOKER\Bai tap\Cloud\GoogleDriver\GoogleDriver\GoogleDriver\bin\Debug\Google.Apis.PlatformServices.dll
+D:\1.NAM JOKER\Bai tap\Cloud\GoogleDriver\GoogleDriver\GoogleDriver\bin\Debug\Newtonsoft.Json.dll
+D:\1.NAM JOKER\Bai tap\Cloud\GoogleDriver\GoogleDriver\GoogleDriver\bin\Debug\Google.Apis.xml
+D:\1.NAM JOKER\Bai tap\Cloud\GoogleDriver\GoogleDriver\GoogleDriver\bin\Debug\Google.Apis.Auth.xml
+D:\1.NAM JOKER\Bai tap\Cloud\GoogleDriver\GoogleDriver\GoogleDriver\bin\Debug\Google.Apis.Core.xml
+D:\1.NAM JOKER\Bai tap\Cloud\GoogleDriver\GoogleDriver\GoogleDriver\bin\Debug\Google.Apis.Drive.v3.xml
+D:\1.NAM JOKER\Bai tap\Cloud\GoogleDriver\GoogleDriver\GoogleDriver\bin\Debug\Newtonsoft.Json.xml
+D:\1.NAM JOKER\Bai tap\Cloud\GoogleDriver\GoogleDriver\GoogleDriver\obj\Debug\GoogleDriver.csprojResolveAssemblyReference.cache
+D:\1.NAM JOKER\Bai tap\Cloud\GoogleDriver\GoogleDriver\GoogleDriver\obj\Debug\GoogleDriver.Form1.resources
+D:\1.NAM JOKER\Bai tap\Cloud\GoogleDriver\GoogleDriver\GoogleDriver\obj\Debug\GoogleDriver.Properties.Resources.resources
+D:\1.NAM JOKER\Bai tap\Cloud\GoogleDriver\GoogleDriver\GoogleDriver\obj\Debug\GoogleDriver.csproj.GenerateResource.Cache
+D:\1.NAM JOKER\Bai tap\Cloud\GoogleDriver\GoogleDriver\GoogleDriver\obj\Debug\GoogleDriver.exe
+D:\1.NAM JOKER\Bai tap\Cloud\GoogleDriver\GoogleDriver\GoogleDriver\obj\Debug\GoogleDriver.pdb
+D:\1.NAM JOKER\Bai tap\Cloud\GoogleDriver\GoogleDriver\GoogleDriver\bin\Debug\client_secret.json
