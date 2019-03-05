@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.txtFileSelected = new System.Windows.Forms.TextBox();
@@ -42,6 +41,7 @@
             this.lbSignin = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,22 +54,12 @@
             this.textBox1.TabIndex = 0;
             this.textBox1.Visible = false;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::GoogleDriver.Properties.Resources.Google_Drive;
-            this.pictureBox2.Location = new System.Drawing.Point(530, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(243, 77);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 4;
-            this.pictureBox2.TabStop = false;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(108, 21);
+            this.label1.Location = new System.Drawing.Point(239, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(287, 24);
             this.label1.TabIndex = 5;
@@ -77,7 +67,7 @@
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(374, 86);
+            this.btnBrowse.Location = new System.Drawing.Point(408, 87);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(131, 23);
             this.btnBrowse.TabIndex = 6;
@@ -96,7 +86,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 116);
+            this.label2.Location = new System.Drawing.Point(34, 119);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(132, 13);
             this.label2.TabIndex = 8;
@@ -120,7 +110,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 89);
+            this.label4.Location = new System.Drawing.Point(34, 92);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(120, 13);
             this.label4.TabIndex = 10;
@@ -128,14 +118,14 @@
             // 
             // txtFolderNameUpload
             // 
-            this.txtFolderNameUpload.Location = new System.Drawing.Point(138, 86);
+            this.txtFolderNameUpload.Location = new System.Drawing.Point(172, 89);
             this.txtFolderNameUpload.Name = "txtFolderNameUpload";
             this.txtFolderNameUpload.Size = new System.Drawing.Size(230, 20);
             this.txtFolderNameUpload.TabIndex = 11;
             // 
             // btnLogout
             // 
-            this.btnLogout.Location = new System.Drawing.Point(570, 106);
+            this.btnLogout.Location = new System.Drawing.Point(671, 52);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(101, 23);
             this.btnLogout.TabIndex = 12;
@@ -146,7 +136,7 @@
             // lbSignin
             // 
             this.lbSignin.AutoSize = true;
-            this.lbSignin.Location = new System.Drawing.Point(611, 80);
+            this.lbSignin.Location = new System.Drawing.Point(642, 19);
             this.lbSignin.Name = "lbSignin";
             this.lbSignin.Size = new System.Drawing.Size(108, 13);
             this.lbSignin.TabIndex = 14;
@@ -154,9 +144,9 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(677, 106);
+            this.btnLogin.Location = new System.Drawing.Point(671, 81);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(85, 23);
+            this.btnLogin.Size = new System.Drawing.Size(101, 23);
             this.btnLogin.TabIndex = 15;
             this.btnLogin.Text = "Đăng nhập";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -171,6 +161,16 @@
             this.btnClear.Text = "Xóa Danh sách";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::GoogleDriver.Properties.Resources.google_drive1;
+            this.pictureBox2.Location = new System.Drawing.Point(12, 9);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(109, 77);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 4;
+            this.pictureBox2.TabStop = false;
             // 
             // Form1
             // 

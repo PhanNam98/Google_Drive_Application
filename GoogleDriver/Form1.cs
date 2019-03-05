@@ -27,9 +27,10 @@ namespace GoogleDriver
             CheckSignIn();
 
         }
+        //quyền truy xuất dữ liệu với Scope = Drive
         static string[] Scopes = { DriveService.Scope.Drive };
         static string ApplicationName = "Application_upload_file_GGD";
-        public string path_Json = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "client_secreta.json");
+        public string path_Json = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "client_secret.json");
         DriveService service;
         struct FoderDaTao
             {
@@ -38,13 +39,13 @@ namespace GoogleDriver
             };
         List<FoderDaTao> ListFoderCreated =new List<FoderDaTao>();
 
-
+        //Không xài tới nên khỏi nói
+        //list danh sách file đã up
         private void ListFiles(DriveService service, ref string pageToken)
         {
             // Define parameters of request.
             FilesResource.ListRequest listRequest = service.Files.List();
             listRequest.PageSize = 1;
-            //listRequest.Fields = "nextPageToken, files(id, name)";
             listRequest.Fields = "nextPageToken, files(name)";
             listRequest.PageToken = pageToken;
             listRequest.Q = "mimeType='*/*'";
@@ -80,8 +81,8 @@ namespace GoogleDriver
 
 
 
-
-        private void UploadImage(string path, DriveService service, string folderUpload)
+        
+        private void UploadFile(string path, DriveService service, string folderUpload)
         {
          
 
@@ -114,16 +115,17 @@ namespace GoogleDriver
         private  UserCredential GetCredentials()
         {
             UserCredential credential;
-
+            // Thông tin về quyền truy xuất dữ liệu của người dùng được lưu ở thư mục client_secret.json
             using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
             {
+                //tạo foder trên máy tính về quyền truy xuất dữ liệu tại thư mục Document
                 string credPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
 
                 credPath = Path.Combine(credPath, "client_secret.json");
-
+                // Yêu cầu người dùng xác thực lần đầu và thông tin sẽ được lưu vào thư mục client_secret.json
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.Load(stream).Secrets,
-                    Scopes,
+                    Scopes,// Quyền truy xuất dữ liệu của người dùng
                     "user",
                     CancellationToken.None,
                     new FileDataStore(credPath, true)).Result;
@@ -133,6 +135,7 @@ namespace GoogleDriver
 
             return credential;
         }
+        //Xóa file trong thư mục client_secret.json
         public void EmptyFolder(DirectoryInfo directoryInfo)
         {
             try
@@ -157,7 +160,7 @@ namespace GoogleDriver
 
             credential = GetCredentials();
 
-            //Create Drive API service.
+            // Tạo ra 1 dịch vụ Drive API - Create Drive API service.
             var service = new DriveService(new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,
@@ -165,17 +168,21 @@ namespace GoogleDriver
             });
 
             string folderid;
-            //get folder id by name
+            //Tạo foder trên drive
             var fileMetadatas = new Google.Apis.Drive.v3.Data.File()
             {
                 Name = txtFolderNameUpload.Text,
                 MimeType = "application/vnd.google-apps.folder"
             };
+
             string et=fileMetadatas.Id;
             var requests = service.Files.Create(fileMetadatas);
+            // Cấu hình thông tin lấy về là ID
             requests.Fields = "id";
             var files = requests.Execute();
             folderid = files.Id;
+
+            #region phần làm thêm không cần quan tâm
             FoderDaTao a = new FoderDaTao();
             a.idFoder = folderid;
             a.Tenfoder = txtFolderNameUpload.Text;
@@ -183,10 +190,13 @@ namespace GoogleDriver
            // MessageBox.Show("Folder ID: " + files.Id);
             foreach (FoderDaTao c in ListFoderCreated)
                 textBox1.Text += string.Format("Tên {0} : ID {1}\n", c.Tenfoder, c.idFoder);
+            #endregion
+
+            //mở Dialog và chọn File cần up
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                txtFileSelected.Text = "Đang upload file đến folder: => " + txtFolderNameUpload.Text + "\r\n\r\n";
+                txtFileSelected.Text = "Đang upload file đến folder: => " + txtFolderNameUpload.Text +"-Id:"+ folderid+ "\r\n\r\n";
                
                 Thread thread; 
                 foreach (string filename in openFileDialog1.FileNames)
@@ -196,7 +206,8 @@ namespace GoogleDriver
                         try
                         {
                             txtFileSelected.Text += filename;
-                            UploadImage(filename, service, folderid);
+                            //Up file
+                            UploadFile(filename, service, folderid);
                             txtFileSelected.Text += " => Upload thành công..." + "\r\n";
                         }
                         catch
@@ -214,18 +225,18 @@ namespace GoogleDriver
             }
 
 
-            string pageToken = null;
+            //string pageToken = null;
 
-            do
-            {
-                ListFiles(service, ref pageToken);
+            //do
+            //{
+            //    ListFiles(service, ref pageToken);
 
-            } while (pageToken != null);
+            //} while (pageToken != null);
 
             //textBox1.Text += "Upload file thành công.";
 
         }
-
+        //Đăng xuất thông tin bằng cách xóa file trong thư mục client_secret.json
         private void btnLogout_Click(object sender, EventArgs e)
         {   
             System.IO.DirectoryInfo fi = new System.IO.DirectoryInfo(path_Json);
@@ -238,9 +249,11 @@ namespace GoogleDriver
             ListFoderCreated.Clear();
 
         }
+       
         public void CheckSignIn()
         {
-            if (System.IO.File.Exists(path_Json+ "\\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user"))
+            //kiểm tra thông tin đăng nhập đã tồn tại hay chưa
+            if (System.IO.File.Exists(path_Json+ @"\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user"))
             {
                 lbSignin.Text = "Bạn đã đăng nhập";
                 btnBrowse.Visible = true;
@@ -259,22 +272,53 @@ namespace GoogleDriver
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            UserCredential credential;
 
-            credential = GetCredentials();
-            var service = new DriveService(new BaseClientService.Initializer()
+            // Tạo ra 1 dịch vụ Drive API - Create Drive API service.
+            try
             {
-                HttpClientInitializer = credential,
-                ApplicationName = ApplicationName,
-            });
-            MessageBox.Show("Bạn đã đăng nhập thành công!");
+                Thread thread = new Thread(() =>
+                {
+                    
+                        UserCredential credential;
+
+                        credential = GetCredentials();
+                        var service = new DriveService(new BaseClientService.Initializer()
+                        {
+                            HttpClientInitializer = credential,
+                            ApplicationName = ApplicationName,
+                        });
+                        MessageBox.Show("Bạn đã đăng nhập thành công!");
+                        CheckSignIn();
+                    this.TopMost = true;
+                   
+
+                });
+                thread.IsBackground = true;
+                thread.Start();
+               
+                CheckSignIn();
+            }
+            catch(Exception ex)
+            {
+               MessageBox.Show("Lỗi", "Lỗi: "+ex.Message );
+            }
+            btnBrowse.Visible = true;
+            btnLogout.Visible = true;
+            btnLogin.Visible = false;
+            this.TopMost = false;
             CheckSignIn();
-            
+          
+        }
+
+        private UserCredential NewMethod()
+        {
+            return GetCredentials();
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
             txtFileSelected.Text = "";
+            txtFolderNameUpload.Text = "";
         }
     } 
 }
