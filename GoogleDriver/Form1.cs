@@ -31,13 +31,14 @@ namespace GoogleDriver
         static string[] Scopes = { DriveService.Scope.Drive };
         static string ApplicationName = "Application_upload_file_GGD";
         public string path_Json = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "client_secret.json");
-        DriveService service;
+        string foderIDFoder = "";
+        DriveService Service;
         struct FoderDaTao
-            {
-           public string Tenfoder;
-          public  string idFoder;
-            };
-        List<FoderDaTao> ListFoderCreated =new List<FoderDaTao>();
+        {
+            public string Tenfoder;
+            public string idFoder;
+        };
+        List<FoderDaTao> ListFoderCreated = new List<FoderDaTao>();
 
         //Không xài tới nên khỏi nói
         //list danh sách file đã up
@@ -60,7 +61,7 @@ namespace GoogleDriver
 
                 foreach (var file in request.Files)
                 {
-                   // textBox1.Text += string.Format("{0}\n", file.Name);
+                    // textBox1.Text += string.Format("{0}\n", file.Name);
                 }
 
                 pageToken = request.NextPageToken;
@@ -81,10 +82,10 @@ namespace GoogleDriver
 
 
 
-        
+
         private void UploadFile(string path, DriveService service, string folderUpload)
         {
-         
+
 
             var fileMetadata = new Google.Apis.Drive.v3.Data.File();
             fileMetadata.Name = Path.GetFileName(path);
@@ -112,7 +113,7 @@ namespace GoogleDriver
         }
 
 
-        private  UserCredential GetCredentials()
+        private UserCredential GetCredentials()
         {
             UserCredential credential;
             // Thông tin về quyền truy xuất dữ liệu của người dùng được lưu ở thư mục client_secret.json
@@ -129,7 +130,7 @@ namespace GoogleDriver
                     "user",
                     CancellationToken.None,
                     new FileDataStore(credPath, true)).Result;
-                 textBox1.Text = string.Format("Credential file saved to: " + credPath);
+                textBox1.Text = string.Format("Credential file saved to: " + credPath);
                 path_Json = credPath;
             }
 
@@ -153,92 +154,99 @@ namespace GoogleDriver
             catch { }
         }
 
-        
+
         private void btnBrowse_Click(object sender, EventArgs e)
         {
-            UserCredential credential;
-
-            credential = GetCredentials();
-
-            // Tạo ra 1 dịch vụ Drive API - Create Drive API service.
-            var service = new DriveService(new BaseClientService.Initializer()
+            if (txtFolderNameUpload.Text != "")
             {
-                HttpClientInitializer = credential,
-                ApplicationName = ApplicationName,
-            });
+                //UserCredential credential;
 
-            string folderid;
-            //Tạo foder trên drive
-            var fileMetadatas = new Google.Apis.Drive.v3.Data.File()
-            {
-                Name = txtFolderNameUpload.Text,
-                MimeType = "application/vnd.google-apps.folder"
-            };
+                //credential = GetCredentials();
 
-            string et=fileMetadatas.Id;
-            var requests = service.Files.Create(fileMetadatas);
-            // Cấu hình thông tin lấy về là ID
-            requests.Fields = "id";
-            var files = requests.Execute();
-            folderid = files.Id;
+                //// Tạo ra 1 dịch vụ Drive API - Create Drive API service.
+                //var service = new DriveService(new BaseClientService.Initializer()
+                //{
+                //    HttpClientInitializer = credential,
+                //    ApplicationName = ApplicationName,
+                //});
+                //Service = service;
+                //string folderid;
+                ////Tạo foder trên drive
+                //var fileMetadatas = new Google.Apis.Drive.v3.Data.File()
+                //{
+                //    Name = txtFolderNameUpload.Text,
+                //    MimeType = "application/vnd.google-apps.folder"
+                //};
 
-            #region phần làm thêm không cần quan tâm
-            FoderDaTao a = new FoderDaTao();
-            a.idFoder = folderid;
-            a.Tenfoder = txtFolderNameUpload.Text;
-            ListFoderCreated.Add(a);
-           // MessageBox.Show("Folder ID: " + files.Id);
-            foreach (FoderDaTao c in ListFoderCreated)
-                textBox1.Text += string.Format("Tên {0} : ID {1}\n", c.Tenfoder, c.idFoder);
-            #endregion
+                //string et = fileMetadatas.Id;
+                //var requests = service.Files.Create(fileMetadatas);
+                //// Cấu hình thông tin lấy về là ID
+                //requests.Fields = "id";
+                //var files = requests.Execute();
+                //folderid = files.Id;
+                //foderIDFoder = files.Id;
+                //#region phần làm thêm không cần quan tâm
+                //FoderDaTao a = new FoderDaTao();
+                //a.idFoder = folderid;
+                //a.Tenfoder = txtFolderNameUpload.Text;
+                //ListFoderCreated.Add(a);
+                //// MessageBox.Show("Folder ID: " + files.Id);
+                //foreach (FoderDaTao c in ListFoderCreated)
+                //    textBox1.Text += string.Format("Tên {0} : ID {1}\n", c.Tenfoder, c.idFoder);
+                //#endregion
 
-            //mở Dialog và chọn File cần up
+                //mở Dialog và chọn File cần up
 
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                txtFileSelected.Text = "Đang upload file đến folder: => " + txtFolderNameUpload.Text +"-Id:"+ folderid+ "\r\n\r\n";
-               
-                Thread thread; 
-                foreach (string filename in openFileDialog1.FileNames)
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    thread = new Thread(() =>
+                    txtFileSelected.Text = "Đang upload file đến folder: => " + txtFolderNameUpload.Text + "-Id:" + foderIDFoder + "\r\n\r\n";
+
+                    //Thread thread;
+                    foreach (string filename in openFileDialog1.FileNames)
                     {
-                        try
-                        {
-                            txtFileSelected.Text += filename;
-                            //Up file
-                            UploadFile(filename, service, folderid);
-                            txtFileSelected.Text += " => Upload thành công..." + "\r\n";
-                        }
-                        catch
-                        {
-                            txtFileSelected.Text += " => Upload lỗi thành công..." + "\r\n";
-                        }
-                       
-                    });
-                    thread.IsBackground = true;
-                    thread.Start(); 
+                        //  thread = new Thread(() =>
+                        //{
+                        //    try
+                        //    {
+                        txtFileSelected.Text += filename;
+                        //Up file
+                        //    UploadFile(filename, service, folderid);
+                        //txtFileSelected.Text += " => Upload thành công..." + "\r\n";
+                        // }
+                        // catch
+                        //  {
+                        //txtFileSelected.Text += " => Upload lỗi thành công..." + "\r\n";
+                        //  }
+
+                        //});
+                        //thread.IsBackground = true;
+                        //thread.Start();
+
+                    }
+
 
                 }
-                
 
+
+                //string pageToken = null;
+
+                //do
+                //{
+                //    ListFiles(service, ref pageToken);
+
+                //} while (pageToken != null);
+
+                //textBox1.Text += "Upload file thành công.";
             }
-
-
-            //string pageToken = null;
-
-            //do
-            //{
-            //    ListFiles(service, ref pageToken);
-
-            //} while (pageToken != null);
-
-            //textBox1.Text += "Upload file thành công.";
+            else
+            {
+                MessageBox.Show("Mời chọn tên file trước", "Thông báo");
+            }
 
         }
         //Đăng xuất thông tin bằng cách xóa file trong thư mục client_secret.json
         private void btnLogout_Click(object sender, EventArgs e)
-        {   
+        {
             System.IO.DirectoryInfo fi = new System.IO.DirectoryInfo(path_Json);
             EmptyFolder(fi);
             path_Json = null;
@@ -249,11 +257,11 @@ namespace GoogleDriver
             ListFoderCreated.Clear();
 
         }
-       
+
         public void CheckSignIn()
         {
             //kiểm tra thông tin đăng nhập đã tồn tại hay chưa
-            if (System.IO.File.Exists(path_Json+ @"\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user"))
+            if (System.IO.File.Exists(path_Json + @"\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user"))
             {
                 lbSignin.Text = "Bạn đã đăng nhập";
                 btnBrowse.Visible = true;
@@ -278,36 +286,37 @@ namespace GoogleDriver
             {
                 Thread thread = new Thread(() =>
                 {
-                    
-                        UserCredential credential;
 
-                        credential = GetCredentials();
-                        var service = new DriveService(new BaseClientService.Initializer()
-                        {
-                            HttpClientInitializer = credential,
-                            ApplicationName = ApplicationName,
-                        });
-                        MessageBox.Show("Bạn đã đăng nhập thành công!");
-                        CheckSignIn();
+                    UserCredential credential;
+
+                    credential = GetCredentials();
+                    var service = new DriveService(new BaseClientService.Initializer()
+                    {
+                        HttpClientInitializer = credential,
+                        ApplicationName = ApplicationName,
+                    });
+                    MessageBox.Show("Bạn đã đăng nhập thành công!");
+                    CheckSignIn();
                     this.TopMost = true;
-                   
+                    this.TopMost = false;
+
 
                 });
                 thread.IsBackground = true;
                 thread.Start();
-               
+
                 CheckSignIn();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-               MessageBox.Show("Lỗi", "Lỗi: "+ex.Message );
+                MessageBox.Show("Lỗi", "Lỗi: " + ex.Message);
             }
             btnBrowse.Visible = true;
             btnLogout.Visible = true;
             btnLogin.Visible = false;
             this.TopMost = false;
             CheckSignIn();
-          
+
         }
 
         private UserCredential NewMethod()
@@ -320,5 +329,97 @@ namespace GoogleDriver
             txtFileSelected.Text = "";
             txtFolderNameUpload.Text = "";
         }
-    } 
+        public void UpMultFile(string folderid)
+        {
+            txtFileSelected.Text = "Đang upload file đến folder: => " + txtFolderNameUpload.Text + "-Id:" + folderid + "\r\n\r\n";
+
+            Thread thread;
+            foreach (string filename in openFileDialog1.FileNames)
+            {
+                thread = new Thread(() =>
+                {
+                    try
+                    {
+                        txtFileSelected.Text += filename;
+                        //Up file
+                        UploadFile(filename, Service, foderIDFoder);
+                        txtFileSelected.Text += " => Upload thành công..." + "\r\n";
+                    }
+                    catch
+                    {
+                        txtFileSelected.Text += " => Upload lỗi không thành công..." + "\r\n";
+                    }
+
+                });
+                thread.IsBackground = true;
+                thread.Start();
+
+            }
+        }
+        private void btnUpload_Click(object sender, EventArgs e)
+        {
+            UpMultFile(foderIDFoder);
+        }
+
+        private void btnCreateFoder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtFolderNameUpload.Text != "")
+                {
+
+                    UserCredential credential;
+
+                    credential = GetCredentials();
+
+                    // Tạo ra 1 dịch vụ Drive API - Create Drive API service.
+                    var service = new DriveService(new BaseClientService.Initializer()
+                    {
+                        HttpClientInitializer = credential,
+                        ApplicationName = ApplicationName,
+                    });
+                    Service = service;
+                    string folderid;
+                    //Tạo foder trên drive
+                    var fileMetadatas = new Google.Apis.Drive.v3.Data.File()
+                    {
+                        Name = txtFolderNameUpload.Text,
+                        MimeType = "application/vnd.google-apps.folder"
+                    };
+
+                    string et = fileMetadatas.Id;
+                    var requests = service.Files.Create(fileMetadatas);
+                    // Cấu hình thông tin lấy về là ID
+                    requests.Fields = "id";
+
+                    var files = requests.Execute();
+                    folderid = files.Id;
+                    foderIDFoder = files.Id;
+                    MessageBox.Show("Thành công", "Thông Báo");
+                    #region phần làm thêm không cần quan tâm
+                    FoderDaTao a = new FoderDaTao();
+                    a.idFoder = folderid;
+                    a.Tenfoder = txtFolderNameUpload.Text;
+                    ListFoderCreated.Add(a);
+                    // MessageBox.Show("Folder ID: " + files.Id);
+                    foreach (FoderDaTao c in ListFoderCreated)
+                        textBox1.Text += string.Format("Tên {0} : ID {1}\n", c.Tenfoder, c.idFoder);
+                    #endregion
+
+
+
+
+                }
+                else
+                {
+                    MessageBox.Show("Mời chọn tên file trước", "Thông báo");
+                }
+            }
+            catch(Exception e1)
+            {
+                MessageBox.Show("Tạo Foder không thành công\n"+e1.Message, "Thông báo");
+                
+            }
+        }
+    }
 }

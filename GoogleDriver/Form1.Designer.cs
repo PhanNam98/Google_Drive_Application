@@ -42,6 +42,8 @@
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btnUpload = new System.Windows.Forms.Button();
+            this.btnCreateFoder = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,20 +69,20 @@
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(408, 87);
+            this.btnBrowse.Location = new System.Drawing.Point(324, 114);
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(131, 23);
+            this.btnBrowse.Size = new System.Drawing.Size(78, 23);
             this.btnBrowse.TabIndex = 6;
-            this.btnBrowse.Text = "Chọn file và upload";
+            this.btnBrowse.Text = "Chọn file";
             this.btnBrowse.UseVisualStyleBackColor = true;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // txtFileSelected
             // 
-            this.txtFileSelected.Location = new System.Drawing.Point(12, 135);
+            this.txtFileSelected.Location = new System.Drawing.Point(12, 138);
             this.txtFileSelected.Multiline = true;
             this.txtFileSelected.Name = "txtFileSelected";
-            this.txtFileSelected.Size = new System.Drawing.Size(750, 214);
+            this.txtFileSelected.Size = new System.Drawing.Size(750, 211);
             this.txtFileSelected.TabIndex = 7;
             // 
             // label2
@@ -172,11 +174,33 @@
             this.pictureBox2.TabIndex = 4;
             this.pictureBox2.TabStop = false;
             // 
+            // btnUpload
+            // 
+            this.btnUpload.Location = new System.Drawing.Point(418, 114);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(75, 23);
+            this.btnUpload.TabIndex = 17;
+            this.btnUpload.Text = "Upload";
+            this.btnUpload.UseVisualStyleBackColor = true;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            // 
+            // btnCreateFoder
+            // 
+            this.btnCreateFoder.Location = new System.Drawing.Point(418, 89);
+            this.btnCreateFoder.Name = "btnCreateFoder";
+            this.btnCreateFoder.Size = new System.Drawing.Size(75, 23);
+            this.btnCreateFoder.TabIndex = 18;
+            this.btnCreateFoder.Text = "Tạo Foder";
+            this.btnCreateFoder.UseVisualStyleBackColor = true;
+            this.btnCreateFoder.Click += new System.EventHandler(this.btnCreateFoder_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 381);
+            this.Controls.Add(this.btnCreateFoder);
+            this.Controls.Add(this.btnUpload);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.lbSignin);
@@ -215,6 +239,8 @@
         private System.Windows.Forms.Label lbSignin;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnUpload;
+        private System.Windows.Forms.Button btnCreateFoder;
     }
 }
 
